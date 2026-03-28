@@ -1,0 +1,15 @@
+from telegram import Update
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
+
+# Вставь сюда твой токен от BotFather
+TOKEN = "8381559075:AAE2zuxEzrJfn0W_Cy-BNbiIQj2jw1_M0AM"
+
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("🍀 Бот работает! Добро пожаловать!")
+
+if name == "main":
+    app = ApplicationBuilder().token(TOKEN).build()
+    app.add_handler(CommandHandler("start", start))
+    print("Бот запущен...")
+    app.run_polling()
+
