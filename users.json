@@ -1,0 +1,15 @@
+{
+    "8042916047": {
+        "keys": [
+            "KEYABCDEF",
+            "KEYXYZ789"
+        ],
+        "free_until": "2026-04-01"
+    },
+    "5403021423": {
+        "keys": [
+            "KEYABCDEF"
+        ],
+        "free_until": "2026-04-01"
+    }
+}
