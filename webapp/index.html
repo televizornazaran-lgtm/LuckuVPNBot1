@@ -1,20 +1,40 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lucky VPN</title>
-<link rel="stylesheet" href="style.css">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-<div class="container">
-<h1>Lucky VPN</h1>
-<p id="free-period">Загрузка данных...</p>
-<p id="keys">Ваши ключи: загрузка...</p>
-<button id="get-key">Получить новый ключ</button>
-<p>Поддержка: <a href="https://t.me/lucky_vpn_support">@lucky_vpn_support</a></p>
-</div>
-<script src="script.js"></script>
+
+<h2>💎 Lucky VPN</h2>
+
+<p id="status">Загрузка...</p>
+<p id="keys"></p>
+
+<button onclick="getKey()">🔑 Получить ключ</button>
+
+<script>
+const tg = window.Telegram.WebApp;
+const user_id = tg.initDataUnsafe.user.id;
+
+async function load() {
+    let res = await fetch(`/user?user_id=${user_id}`);
+    let data = await res.json();
+
+    document.getElementById("status").innerText = "📅 До: " + data.free_until;
+    document.getElementById("keys").innerText = "🔑 " + data.keys.join(", ");
+}
+
+async function getKey() {
+    let res = await fetch(`/get_key?user_id=${user_id}`);
+    let data = await res.json();
+
+    document.getElementById("keys").innerText = "🔑 " + data.keys.join(", ");
+}
+
+load();
+</script>
+
 </body>
 </html>
-
